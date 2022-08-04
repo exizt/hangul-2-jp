@@ -6,26 +6,27 @@
 <title>Hangul to Hiragana</title>
 <link href="./assets/reset.css" rel="stylesheet">
 <link href="./assets/app.css" rel="stylesheet">
+<link href="./assets/button.css" rel="stylesheet">
 <script src="./dist/hangul-2-jp.js"></script>
 <script src="./assets/app.js"></script>
 </head>
 <body>
     <div class="h2n-container">
         <div class="h2n-box h2n-box-input">
-            <h1 class="h2n-box-title">한글 입력</h1>
+            <h1 class="h2n-box-header">한글 입력</h1>
             <div class="h2n-box-textwrap">
                 <textarea rows="14" id="input" placeholder="한글을 입력합니다 (예: 니혼고)"></textarea>
             </div>
         </div>
         <div class="h2n-box h2n-box-output">
             <div>
-                <h1 class="h2n-box-title">일본어 (히라가나)</h1>
+                <h1 class="h2n-box-header">일본어 (히라가나)</h1>
                 <div class="h2n-box-textwrap">
                     <pre id="output"></pre>
                 </div>
             </div>
             <div style="padding: 1rem 1rem">
-                <button id="btn_copyresult" class="btn btn-primary btn-sm">결과 복사</button>
+                <button id="btn_copyresult" class="info">복사</button>
             </div>
         </div>
     </div>
