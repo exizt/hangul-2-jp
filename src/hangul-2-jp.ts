@@ -16,51 +16,84 @@ class Hangul2Japanese {
     /**
     * 변경
     */
-    translate(text: string, options: ITab2MediawikiOptions) {
+    translate(text: string, options: any) {
         this.output = ''
 
         let result = ''
         // '가'의 유니코드값. 받침 유무 확인 및 받침 추출에 이용됨.
-        const ga_uni:number = 44032
+        const uni_ga:number = 44032
 
         // 받침 문자
         const t = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ',
             'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
             'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ',
             'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-        
+        const s = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ',
+            'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ',
+            'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+
         // 문자 하나씩 변형
         for (let c of text){
             // console.log(c)
 
             // 받침 유무
-            let tn = (c.charCodeAt(0) - ga_uni) % 28;
+            let uni_ko = c.charCodeAt(0) - uni_ga
+            let tn = (uni_ko) % 28;
 
-            console.log('tn', tn)
+            // console.log('tn', tn)
 
-            if(tn == 0){
-                //// 받침이 없을 때
-                result += this.convertChar(c)
-            } else if(tn > 0){
-                //// 받침이 존재함
+            if(tn < 0){
+                //// 받침 값이 음수. 즉, 입력 중이거나 한글이 아니거나.
+                result += c
+                continue
+            }
+
+            let c2 = c
+            if(tn > 0){
+                //// 받침이 존재함. 이 경우 받침을 제외시켜준다.
+
                 // 받침을 제외한 문자
-                const c2 = String.fromCharCode(c.charCodeAt(0) - tn)
-                console.log(c2)
+                c2 = String.fromCharCode(c.charCodeAt(0) - tn)
+                // console.log(c2)
+            }
+
+            // let fn = parseInt(uni_ko/588)
+            // ㅑ, ㅠ, ㅛ 에 대한 처리
+            let c3 = c2
+            let sn:number = ~~((uni_ko % 588)/28)
+
+            if(s[sn] == 'ㅑ' || s[sn] == 'ㅠ' || s[sn] == 'ㅛ'){
+                let c3_code = c2.charCodeAt(0) - sn * 28 + 20*28
+                c3 = String.fromCharCode(c3_code)
+                if(c3 != '이'){
+                    result += this.convertChar(c3)
+                    if(s[sn] == 'ㅑ'){
+                        result += 'ゃ'
+                    } else if(s[sn] == 'ㅠ'){
+                        result += 'ゅ'
+                    } else if(s[sn] == 'ㅛ'){
+                        result += 'ょ'
+                    }
+                } else {
+                    result += this.convertChar(c2)    
+                }
+
+            } else {
                 result += this.convertChar(c2)
-    
+            }
+
+
+            if(tn > 0){
+                //// 받침이 존재했을 때, 받침이 ㄴ 또는 ㅇ인 경우
+
                 // 받침에 대한 처리
                 if(t[tn] == 'ㄴ' || t[tn] == 'ㅇ'){
                     result += 'ん'
-                } else if(t[tn] == 'ㅅ'){
+                } else if(t[tn] == 'ㄱ' || t[tn] == 'ㄷ' || t[tn] == 'ㅂ' || t[tn] == 'ㅅ'){
                     result += 'っ'
                 }
-            } else {
-                //// 입력중임
-                result += c
             }
-            
-            // 직전의 문자
-            this.before_char = c
+
         }
 
         this.output = result;
