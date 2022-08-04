@@ -4,29 +4,34 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, width=device-width" />
 <meta charset="utf-8"> 
 <title>Hangul to Hiragana</title>
-<link href="./assets/bootstrap.min.css" rel="stylesheet">
+<link href="./assets/reset.css" rel="stylesheet">
+<link href="./assets/app.css" rel="stylesheet">
 <script src="./dist/hangul-2-jp.js"></script>
 <script src="./assets/app.js"></script>
 </head>
 <body>
-    <div class="container mt-2">
-        <div class="card">
-            <div class="card-body">
-                <h6>한글 입력</h6>
-                <textarea rows="14" cols="100" id="input" style="width:100%"></textarea>
+    <div class="h2n-container">
+        <div class="h2n-box h2n-box-input">
+            <h1 class="h2n-box-title">한글 입력</h1>
+            <div class="h2n-box-textwrap">
+                <textarea rows="14" id="input" placeholder="한글을 입력합니다 (예: 니혼고)"></textarea>
             </div>
         </div>
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5>히라가나 결과&nbsp;<button id="btn_copyresult" class="btn btn-primary btn-sm">결과 복사</button>
-                    <span class="text-muted" id="copy-msg"></span>
-                </h5>
-                <div class="overflow-auto" style="height: 10rem;">
+        <div class="h2n-box h2n-box-output">
+            <div>
+                <h1 class="h2n-box-title">일본어 (히라가나)</h1>
+                <div class="h2n-box-textwrap">
                     <pre id="output"></pre>
                 </div>
             </div>
+            <div style="padding: 1rem 1rem">
+                <button id="btn_copyresult" class="btn btn-primary btn-sm">결과 복사</button>
+            </div>
         </div>
-        <p class="text-end">© 2022 <a href="https://github.com/exizt" target="_blank">exizt</a></p>
+    </div>
+    
+    <div style="text-align:right; padding: 0 1rem">
+        <p>© 2022 <a href="https://github.com/exizt" target="_blank">exizt</a></p>
     </div>
 </body>
 </html>
