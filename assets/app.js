@@ -18,9 +18,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
 	// console.log(~~(10/3))
 	// console.log(converter.dict)
 
-	// 이벤트 매핑
-	onLoadedEventListeners();
-	function onLoadedEventListeners(){
+	bind();
+	
+	// 이벤트 바인딩
+	function bind(){
 		let selector = options.selector
 		
 		// 값 입력시
