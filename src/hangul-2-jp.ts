@@ -3,8 +3,8 @@
  */
 class Hangul2Japanese {
     output: string = '';
-    before_char = '';
     dict: any;
+    before_char = '';
 
     /**
      * constructor

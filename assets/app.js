@@ -1,9 +1,9 @@
 /**
- * 이벤트 리스터
+ * 이벤트 바인딩
  */
 document.addEventListener("DOMContentLoaded", ()=> {
 	let converter = null
-	const options = {
+	const optionSet = {
 		selector: {
 			input: "#input",
 			output: "#output",
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 	// console.log(~~(10/3))
 	// console.log(converter.dict)
 
-	bind();
+	bind()
 	
 	// 이벤트 바인딩
 	function bind(){
-		let selector = options.selector
+		let selector = optionSet.selector
 		
-		// 값 입력시
+		// 문자열 입력 시 이벤트
 		_add_event(selector.input, 'input', convert);
 
 		_add_event(selector.copyBtn, 'click', (e)=>{
@@ -38,17 +38,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 		document.querySelector(sel).addEventListener(type, event);
 	}
 
-	function onChangeEv(sel, event){
-		_add_event(sel, 'change', event)
-	}
-
 	/**
 	* 변환
 	*/
 	function convert(){
-		let selector = options.selector
+		let selector = optionSet.selector
 
-		converter.translate(document.querySelector(selector.input).value, options);
+		converter.translate(document.querySelector(selector.input).value, optionSet);
 		document.querySelector(selector.output).innerHTML = converter.output;
 	}
 	

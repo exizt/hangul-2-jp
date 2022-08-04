@@ -1,7 +1,7 @@
 {
-  "name": "tab-to-mediawiki",
-  "version": "1.1.0",
-  "description": "탭 스타일의 문자열을 미디어위키 테이블 포멧으로 변환해주는 간단한 소스",
+  "name": "hangul-2-jp",
+  "version": "1.0.0",
+  "description": "한글을 입력해서 일본어 입력을 도와주는 도구",
   "main": "app.js",
   "scripts": {
     "build": "tsc"
