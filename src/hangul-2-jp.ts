@@ -1,24 +1,20 @@
 /**
  * Tab1Mediawiki 1.1.11
  */
-class Hangul2Japanese {
-    output: string = '';
+export class Hangul2Japanese {
     dict: any;
-    before_char = '';
 
     /**
      * constructor
      */
     constructor() {
-        // this.prepare()
+        this.prepare()
     }
 
     /**
     * 변경
     */
     translate(text: string, options: any) {
-        this.output = ''
-
         let result = ''
         // '가'의 유니코드값. 받침 유무 확인 및 받침 추출에 이용됨.
         const uni_ga:number = 44032
@@ -96,8 +92,7 @@ class Hangul2Japanese {
 
         }
 
-        this.output = result;
-        
+        return result;
     }
 
     prepare(){
@@ -200,7 +195,7 @@ class Hangul2Japanese {
      * @param c 문자
      * @returns 
      */
-    convertChar(c: any){
+    convertChar(c: string){
         let dict = this.dict
         if(dict.hasOwnProperty(c)){
             //return dict[]
