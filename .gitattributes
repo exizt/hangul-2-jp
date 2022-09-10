@@ -1,0 +1,9 @@
+# autocrlf
+* text=auto
+
+# Don't diff
+package-lock.json text -diff
+
+# github linguist
+*.js linguist-vendored
+*.html linguist-vendored
